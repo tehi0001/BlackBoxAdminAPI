@@ -15,7 +15,8 @@ $category_exists = $db->select_one(
 if(!empty($category_exists)) {
     $response->json(array(
         "success" => false,
-        "message" => "Category name already exists"
+        "message" => "Category name already exists",
+        "token" => Utils::renew_session_token($user)
     ));
 }
 

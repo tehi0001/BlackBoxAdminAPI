@@ -29,6 +29,10 @@ $router->get("/", function ($request, $response) {
     $response->send("Welcome to BlackBox Admin API");
 });
 
+$router->get("/product-categories", function ($request, $response) {
+    require_once 'controllers/get_product_categories.php';
+});
+
 $router->get("**", function ($request, $response) {
     $response->status(404)->send("404 Not Found");
 });
