@@ -1,6 +1,6 @@
 <?php
 
-class Util {
+class Utils {
 
     public static function get_db_object(): Database {
         return new Database("mariadb", "dev", "BlackBox@123", "blackbox");

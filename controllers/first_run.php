@@ -2,7 +2,7 @@
 
 $post = $request->getBody();
 
-$db = Util::get_db_object($response);
+$db = Utils::get_db_object($response);
 
 try {
 
@@ -17,7 +17,7 @@ try {
     }
 
 
-    $password = Util::hash_password($post['password']);
+    $password = Utils::hash_password($post['password']);
 
     $query = $db->query(
         "INSERT INTO administrators (firstname, lastname, email, password, joindate, role) VALUES (?, ?, ?, ?, UTC_TIMESTAMP(), ?)",
