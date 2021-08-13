@@ -1,9 +1,22 @@
 <?php
+/*
+ ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+*/
 
-require_once 'LiteRouter/router.class.php';
-use LiteRouter\Router\Router;
+require_once 'init.php';
+
+use LiteRouter\Router\Router as Router;
 
 $router = new Router();
+
+//First Run
+
+$router->post("/first-run", function ($request, $response) {
+    require_once 'controllers/first_run.php';
+});
+
 
 
 //GET
