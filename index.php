@@ -40,6 +40,10 @@ $router->post("/auth", function ($request, $response) {
     require_once 'controllers/auth.php';
 });
 
+$router->post("/add-product-category", function ($request, $response) {
+    require_once 'controllers/add_product_category.php';
+});
+
 $router->post("**", function ($request, $response) {
     $response->status(404)->send("404 Not Found");
 });

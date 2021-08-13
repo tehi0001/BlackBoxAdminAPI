@@ -1,6 +1,8 @@
 <?php
 use Firebase\JWT\JWT as JWT;
 
+use LiteRouter\Http\Response as HttpResponse;
+
 class Utils {
 
     public static function get_db_object(): Database {
@@ -41,7 +43,7 @@ class Utils {
     }
 
     private static function decode_auth_token(string $token) {
-        require 'conf/jwt_key.php';
+        require 'conf/jwt.php';
 
         try {
             $decoded = JWT::decode($token, $jwt_key, array("HS256"));
@@ -50,5 +52,29 @@ class Utils {
         catch (Exception $e) {
             throw new $e;
         }
+    }
+
+    public static function get_user_from_session(HttpResponse $response): string {
+        $request_headers = getallheaders();
+
+        if(empty($request_headers['Authorization'])) {
+            $response->status(401)->send("Unauthorized");
+        }
+
+        $token = str_replace("Bearer ", "", $request_headers['Authorization']);
+
+        try {
+            $decoded_token = self::decode_auth_token(urldecode($token));
+
+            return $decoded_token["data"]["user"];
+        }
+        catch (Exception $e) {
+            $response->status(401)->send("Unauthorized");
+            return "";
+        }
+    }
+
+    public static function renew_session_token(string $user): string {
+        return self::generate_session_token(array("user" => $user));
     }
 }

@@ -16,16 +16,23 @@ try {
         $response->status(400)->send("System already initialized");
     }
 
+    require_once 'conf/superuser.php';
 
     $password = Utils::hash_password($post['password']);
 
     $query = $db->query(
         "INSERT INTO administrators (firstname, lastname, email, password, joindate, role) VALUES (?, ?, ?, ?, UTC_TIMESTAMP(), ?)",
         "sssss",
-        array('Super', 'User', 'superuser@blackbox.com', $password,'root')
+        array(
+            $superuser_firstname,
+            $superuser_lastname,
+            $superuser_email,
+            $password,
+            "root"
+        )
     );
 
-    if($query == null) {
+    if(empty($query)) {
         $response->send("System successfully initialized. You may sign in as with your root email and password");
     }
 
