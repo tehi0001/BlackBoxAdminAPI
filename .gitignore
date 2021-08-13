@@ -1,4 +1,4 @@
-vendors/
 .idea
 .gitignore
 .DS_Store
+vendor

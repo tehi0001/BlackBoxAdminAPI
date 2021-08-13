@@ -5,7 +5,11 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 */
 
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: *");
+
 require_once 'init.php';
+require_once 'vendor/autoload.php';
 
 use LiteRouter\Router\Router as Router;
 
