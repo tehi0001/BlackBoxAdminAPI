@@ -10,4 +10,7 @@ class Util {
         return password_hash($password, PASSWORD_ARGON2I);
     }
 
+    public static function verify_password(string $password, string $password_hash): bool {
+        return password_verify($password, $password_hash);
+    }
 }
