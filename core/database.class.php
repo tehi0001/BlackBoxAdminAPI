@@ -3,6 +3,8 @@
 class Database {
     private $mysqli;
 
+    private $statement_result;
+
     /**
      * @throws Exception
      */
@@ -36,9 +38,15 @@ class Database {
             throw new Exception("DB Error - Query execution failed: " . $stmt->error);
         }
 
+        $this->statement_result = $stmt;
+
         if($return_results) {
             return $stmt;
         }
+    }
+
+    public function getStatementResult() {
+        return $this->statement_result;
     }
 
     /**

@@ -20,15 +20,17 @@ if(!empty($category_exists)) {
     ));
 }
 
-$query = $db->query(
-    "INSERT INTO product_categories (category_name, description, entry_date) VALUES (?, ?, UTC_TIMESTAMP())",
-    "ss",
-    array($post['name'], $post['description'])
-);
+try {
+    $db->query(
+        "INSERT INTO product_categories (category_name, description, entry_date) VALUES (?, ?, UTC_TIMESTAMP())",
+        "ss",
+        array($post['name'], $post['description'])
+    );
 
-if(empty($query)) {
     $response->json(array(
         "success" => true,
         "token" => Utils::renew_session_token($user)
     ));
+} catch (Exception $e) {
+    $response->status(500)->send($e->getMessage());
 }

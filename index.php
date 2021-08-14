@@ -44,6 +44,7 @@ $router->post("/auth", function ($request, $response) {
     require_once 'controllers/auth.php';
 });
 
+//Product Category
 $router->post("/add-product-category", function ($request, $response) {
     require_once 'controllers/add_product_category.php';
 });
@@ -55,6 +56,13 @@ $router->post("/edit-product-category/:id", function ($request, $response) {
 $router->post("/delete-product-category", function ($request, $response) {
     require_once 'controllers/delete_product_category.php';
 });
+
+//Product
+
+$router->post("/add-product", function ($request, $response) {
+    require_once 'controllers/add_product.php';
+});
+
 
 $router->post("**", function ($request, $response) {
     $response->status(404)->send("404 Not Found");
