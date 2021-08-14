@@ -1,14 +1,19 @@
 <?php
 $user = Utils::get_user_from_session($response);
 
+$post = $request->getBody();
+
 $db = Utils::get_db_object();
 
 try {
-    $categories = $db->select_many("SELECT * FROM product_categories ORDER BY category_name ASC");
+    $db->query(
+        "DELETE FROM shipping_categories WHERE id=?",
+        "i",
+        array($post['id'])
+    );
 
     $response->json(array(
         "success" => true,
-        "data" => $categories,
         "token" => Utils::renew_session_token($user)
     ));
 } catch (Exception $e) {

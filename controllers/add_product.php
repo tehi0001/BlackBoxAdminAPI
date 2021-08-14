@@ -15,14 +15,14 @@ $product_exists = $db->select_one(
 if(!empty($product_exists)) {
     $response->json(array(
         "success" => false,
-        "message" => "Product already exists in selected category"
+        "message" => "Duplicate product name in selected category"
     ));
 }
 
 try {
     $db->query(
         "INSERT INTO products (category, product_name, manufacturer, description, stock, entrydate, price, discount) VALUES (?, ?, ?, ?, ?, UTC_TIMESTAMP(), ?, ?)",
-        "isssiii",
+        "isssidd",
         array($post['category'], $post['name'], $post['manufacturer'], $post['description'], $post['stock'], $post['price'], $post['discount'])
     );
 

@@ -33,6 +33,14 @@ $router->get("/product-categories", function ($request, $response) {
     require_once 'controllers/get_product_categories.php';
 });
 
+$router->get("/shipping-categories", function ($request, $response) {
+    require_once 'controllers/get_shipping_categories.php';
+});
+
+$router->get("/products", function ($request, $response) {
+    require_once 'controllers/get_products.php';
+});
+
 $router->get("**", function ($request, $response) {
     $response->status(404)->send("404 Not Found");
 });
@@ -62,6 +70,21 @@ $router->post("/delete-product-category", function ($request, $response) {
 $router->post("/add-product", function ($request, $response) {
     require_once 'controllers/add_product.php';
 });
+
+//Shipping Category
+
+$router->post("/add-shipping-category", function ($request, $response) {
+    require_once 'controllers/add_shipping_category.php';
+});
+
+$router->post("/edit-shipping-category/:id", function ($request, $response) {
+    require_once 'controllers/edit_shipping_category.php';
+});
+
+$router->post("/delete-shipping-category", function ($request, $response) {
+    require_once 'controllers/delete_shipping_category.php';
+});
+
 
 
 $router->post("**", function ($request, $response) {

@@ -1,5 +1,4 @@
 <?php
-
 $user = Utils::get_user_from_session($response);
 
 $post = $request->getBody();
@@ -7,7 +6,7 @@ $post = $request->getBody();
 $db = Utils::get_db_object();
 
 $category_exists = $db->select_one(
-    "SELECT category_name FROM product_categories WHERE category_name=?",
+    "SELECT id FROM shipping_categories WHERE category_name=?",
     "s",
     array($post['name'])
 );
@@ -15,16 +14,16 @@ $category_exists = $db->select_one(
 if(!empty($category_exists)) {
     $response->json(array(
         "success" => false,
-        "message" => "Duplicate product category name",
+        "message" => "Duplicate shipping category name",
         "token" => Utils::renew_session_token($user)
     ));
 }
 
 try {
     $db->query(
-        "INSERT INTO product_categories (category_name, description, entry_date) VALUES (?, ?, UTC_TIMESTAMP())",
-        "ss",
-        array($post['name'], $post['description'])
+        "INSERT INTO shipping_categories (category_name, description, conditions, cost) VALUES (?, ?, ?, ?)",
+        "sssd",
+        array($post['name'], $post['description'], $post['conditions'], $post['cost'])
     );
 
     $response->json(array(
@@ -32,5 +31,4 @@ try {
         "token" => Utils::renew_session_token($user)
     ));
 } catch (Exception $e) {
-    $response->status(500)->send($e->getMessage());
 }

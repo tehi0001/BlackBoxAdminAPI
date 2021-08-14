@@ -10,7 +10,7 @@ $post = $request->getBody();
 
 try {
     $category_exists = $db->select_one(
-        "SELECT id FROM product_categories WHERE category_name=?",
+        "SELECT id FROM shipping_categories WHERE category_name=?",
         "s",
         array($post['name'])
     );
@@ -18,17 +18,19 @@ try {
     if(!empty($category_exists) && $category_exists['id'] != $request->getParam("id")) {
         $response->json(array(
             "success" => false,
-            "message" => "Duplicate product category name",
+            "message" => "Duplicate shipping category name",
             "token" => Utils::renew_session_token($user)
         ));
     }
 
     $db->query(
-        "UPDATE product_categories SET category_name=?, description=? WHERE id=?",
-        "ssi",
+        "UPDATE shipping_categories SET category_name=?, description=?, conditions=?, cost=? WHERE id=?",
+        "sssdi",
         array(
             $post['name'],
             $post['description'],
+            $post['conditions'],
+            $post['cost'],
             $request->getParam("id")
         )
     );

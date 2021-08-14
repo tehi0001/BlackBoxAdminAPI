@@ -4,7 +4,7 @@ $user = Utils::get_user_from_session($response);
 $db = Utils::get_db_object();
 
 try {
-    $categories = $db->select_many("SELECT * FROM product_categories ORDER BY category_name ASC");
+    $categories = $db->select_many("SELECT * FROM shipping_categories ORDER BY category_name ASC");
 
     $response->json(array(
         "success" => true,
