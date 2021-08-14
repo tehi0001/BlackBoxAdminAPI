@@ -52,6 +52,10 @@ $router->post("/edit-product-category/:id", function ($request, $response) {
     require_once 'controllers/edit_product_category.php';
 });
 
+$router->post("/delete-product-category", function ($request, $response) {
+    require_once 'controllers/delete_product_category.php';
+});
+
 $router->post("**", function ($request, $response) {
     $response->status(404)->send("404 Not Found");
 });
