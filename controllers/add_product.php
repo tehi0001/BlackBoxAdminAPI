@@ -23,7 +23,7 @@ try {
     $db->query(
         "INSERT INTO products (category, product_name, manufacturer, description, stock, entrydate, price, discount) VALUES (?, ?, ?, ?, ?, UTC_TIMESTAMP(), ?, ?)",
         "isssidd",
-        array($post['category'], $post['name'], $post['manufacturer'], nl2br($post['description']), $post['stock'], $post['price'], $post['discount'])
+        array($post['category'], $post['name'], $post['manufacturer'], $post['description'], $post['stock'], $post['price'], $post['discount'])
     );
 
     $insert_result = $db->getStatementResult();

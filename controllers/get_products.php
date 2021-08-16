@@ -8,7 +8,7 @@ $db = Utils::get_db_object();
 
 try {
     $products = $db->select_many(
-        "SELECT products.id, product_categories.category_name AS category, products.product_name AS name, products.price, products.stock FROM products JOIN product_categories ON products.category = product_categories.id ORDER BY entrydate DESC"
+        "SELECT products.id, product_categories.category_name AS category, products.product_name AS name, products.price, products.stock, products.discount FROM products JOIN product_categories ON products.category = product_categories.id ORDER BY entrydate DESC"
     );
     for($i = 0; $i < sizeof($products); $i++) {
         $image = $db->select_one("SELECT image FROM product_images WHERE product=? ORDER BY entrydate ASC", "i", array($products[$i]['id']));

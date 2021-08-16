@@ -24,7 +24,7 @@ try {
     $db->query(
         "UPDATE products SET category=?, product_name=?, manufacturer=?, description=?, stock=?, price=?, discount=? WHERE id=?",
         "ssssiddi",
-        array($post['category'], $post['name'], $post['manufacturer'], nl2br($post['description']), $post['stock'], $post['price'], $post['discount'], $id)
+        array($post['category'], $post['name'], $post['manufacturer'], $post['description'], $post['stock'], $post['price'], $post['discount'], $id)
     );
 
 

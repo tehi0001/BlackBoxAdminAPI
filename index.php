@@ -79,6 +79,10 @@ $router->post("/edit-product/:id", function ($request, $response) {
     require_once 'controllers/edit_product.php';
 });
 
+$router->post("/delete-product/", function ($request, $response) {
+    require_once 'controllers/delete_product.php';
+});
+
 //Shipping Category
 
 $router->post("/add-shipping-category", function ($request, $response) {
