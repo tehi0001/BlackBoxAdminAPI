@@ -53,6 +53,10 @@ $router->get("/view-order/:id", function ($request, $response) {
     require_once 'controllers/view_order.php';
 });
 
+$router->get("/users", function ($request, $response) {
+    require_once 'controllers/get_users.php';
+});
+
 $router->get("**", function ($request, $response) {
     $response->status(404)->send("404 Not Found");
 });
