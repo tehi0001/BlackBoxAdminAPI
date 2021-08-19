@@ -45,6 +45,14 @@ $router->get("/view-product/:id", function ($request, $response) {
     require_once 'controllers/view_product.php';
 });
 
+$router->get("/orders", function ($request, $response) {
+    require_once 'controllers/get_orders.php';
+});
+
+$router->get("/view-order/:id", function ($request, $response) {
+    require_once 'controllers/view_order.php';
+});
+
 $router->get("**", function ($request, $response) {
     $response->status(404)->send("404 Not Found");
 });
@@ -95,6 +103,16 @@ $router->post("/edit-shipping-category/:id", function ($request, $response) {
 
 $router->post("/delete-shipping-category", function ($request, $response) {
     require_once 'controllers/delete_shipping_category.php';
+});
+
+//Orders
+
+$router->post("/change-order-status", function ($request, $response) {
+    require_once 'controllers/change_order_status.php';
+});
+
+$router->post("/delete-order", function ($request, $response) {
+    require_once 'controllers/delete_order.php';
 });
 
 

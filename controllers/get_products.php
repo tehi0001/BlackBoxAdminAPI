@@ -2,8 +2,6 @@
 
 $user = Utils::get_user_from_session($response);
 
-$post = $request->getBody();
-
 $db = Utils::get_db_object();
 
 try {
