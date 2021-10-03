@@ -57,6 +57,14 @@ $router->get("/users", function ($request, $response) {
     require_once 'controllers/get_users.php';
 });
 
+$router->get("/promotions", function ($request, $response) {
+    require_once 'controllers/get_promotions.php';
+});
+
+$router->get("/promotions/:id", function ($request, $response) {
+    require_once 'controllers/view_promotion.php';
+});
+
 $router->get("**", function ($request, $response) {
     $response->status(404)->send("404 Not Found");
 });
@@ -123,6 +131,14 @@ $router->post("/delete-order", function ($request, $response) {
 
 $router->post("/add-promotion", function ($request, $response) {
     require_once 'controllers/add_promotion.php';
+});
+
+$router->post("/edit-promotion/:id", function ($request, $response) {
+    require_once 'controllers/edit_promotion.php';
+});
+
+$router->post("/delete-promotion", function ($request, $response) {
+    require_once 'controllers/delete_promotion.php';
 });
 
 $router->post("**", function ($request, $response) {
