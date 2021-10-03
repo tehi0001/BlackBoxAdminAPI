@@ -119,7 +119,11 @@ $router->post("/delete-order", function ($request, $response) {
     require_once 'controllers/delete_order.php';
 });
 
+//Promotions
 
+$router->post("/add-promotion", function ($request, $response) {
+    require_once 'controllers/add_promotion.php';
+});
 
 $router->post("**", function ($request, $response) {
     $response->status(404)->send("404 Not Found");
