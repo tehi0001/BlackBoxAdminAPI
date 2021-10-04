@@ -65,6 +65,10 @@ $router->get("/promotions/:id", function ($request, $response) {
     require_once 'controllers/view_promotion.php';
 });
 
+$router->get("/profile", function ($request, $response) {
+    require_once 'controllers/profile.php';
+});
+
 $router->get("**", function ($request, $response) {
     $response->status(404)->send("404 Not Found");
 });
@@ -139,6 +143,16 @@ $router->post("/edit-promotion/:id", function ($request, $response) {
 
 $router->post("/delete-promotion", function ($request, $response) {
     require_once 'controllers/delete_promotion.php';
+});
+
+//Profile & Settings
+
+$router->post("/edit-profile", function ($request, $response) {
+    require_once 'controllers/edit_profile.php';
+});
+
+$router->post("/change-password", function ($request, $response) {
+    require_once 'controllers/change_password.php';
 });
 
 $router->post("**", function ($request, $response) {
