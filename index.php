@@ -69,6 +69,10 @@ $router->get("/profile", function ($request, $response) {
     require_once 'controllers/profile.php';
 });
 
+$router->get("/dashboard", function ($request, $response) {
+    require_once 'controllers/dashboard.php';
+});
+
 $router->get("**", function ($request, $response) {
     $response->status(404)->send("404 Not Found");
 });
@@ -154,6 +158,19 @@ $router->post("/edit-profile", function ($request, $response) {
 $router->post("/change-password", function ($request, $response) {
     require_once 'controllers/change_password.php';
 });
+
+//Customers
+
+$router->post("/delete-customer", function ($request, $response) {
+    require_once 'controllers/delete_customer.php';
+});
+
+$router->post("/edit-customer/:id", function ($request, $response) {
+    require_once 'controllers/edit_customer.php';
+});
+
+
+//404
 
 $router->post("**", function ($request, $response) {
     $response->status(404)->send("404 Not Found");
